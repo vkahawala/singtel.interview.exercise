@@ -31,20 +31,20 @@ public class AnimalController {
         }
     }
 
-    @GetMapping(value = "/animals/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getAnimals(@PathVariable String type) {
+    @GetMapping(value = "/animals/{activity}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAnimals(@PathVariable String activity) {
         try {
-            return new ResponseEntity<>(animalService.listAnimals(AnimalActivityFectory.getActivity(type)), HttpStatus.OK);
+            return new ResponseEntity<>(animalService.listAnimals(AnimalActivityFectory.getActivity(activity)), HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<>(new ErrorMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @GetMapping(value = "/animals/{type}/count", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity count(@PathVariable String type) {
+    @GetMapping(value = "/animals/{activity}/count", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity count(@PathVariable String activity) {
         try {
-            return new ResponseEntity<>(animalService.count(AnimalActivityFectory.getActivity(type)), HttpStatus.OK);
+            return new ResponseEntity<>(animalService.count(AnimalActivityFectory.getActivity(activity)), HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<>(new ErrorMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
